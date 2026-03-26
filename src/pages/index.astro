@@ -1,8 +1,10 @@
 ---
-const name = "Christian Ballesteros Pérez";
-const role = "Desarrollador de Software Jr";
-
-const bio = `
+const content = {
+  es: {
+    htmlLang: "es",
+    pageTitle: "Presentación",
+    role: "Desarrollador de Software Jr",
+    bio: `
 Soy Christian Ballesteros Pérez, desarrollador en formación con base técnica en informática, telecomunicaciones y desarrollo de aplicaciones. Actualmente curso el FP de Grado Superior en Desarrollo de Aplicaciones Multiplataforma, donde refuerzo mis conocimientos en programación, lógica de aplicaciones y entornos de desarrollo.
 
 Cuento con experiencia profesional en el sector de telecomunicaciones, participando en el diseño FTTH y la elaboración de planos técnicos detallados para proveedores, así como experiencia previa en soporte informático, ofreciendo asistencia técnica a usuarios en la configuración de VPN, gestión de incidencias de correo corporativo y recuperación de credenciales.
@@ -12,21 +14,49 @@ A nivel técnico, he desarrollado una demo funcional de un videojuego tipo Poké
 Actualmente me encuentro ampliando mis competencias en Power BI, centrado en el modelado de datos, creación de medidas DAX y visualización de KPIs, así como en Docker, aprendiendo la contenedorización de aplicaciones y la gestión de entornos de desarrollo reproducibles.
 
 Me considero una persona responsable, trabajadora y orientada al aprendizaje continuo, con buena capacidad de trabajo en equipo y adaptación a nuevos retos tecnológicos.
-`;
+`,
+    tags: ["Backend", "Python", "Power BI", "Docker", "Ciberseguridad"],
+    links: [
+      { label: "Ver CV", href: "/CartaPresentacion/CV-Christian-Ballesteros.pdf" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/c-ballesteros/" },
+      { label: "GitHub", href: "https://github.com/Christian-B-P" },
+    ],
+  },
+  en: {
+    htmlLang: "en",
+    pageTitle: "Presentation",
+    role: "Junior Software Developer",
+    bio: `
+I am Christian Ballesteros Pérez, a developer in training with a technical background in IT, telecommunications, and application development. I am currently studying a Higher Vocational Diploma in Multiplatform Application Development, where I continue to strengthen my knowledge of programming, application logic, and development environments.
 
-const links = [
-  { label: "Ver CV", href: "/CartaPresentacion/CV-Christian-Ballesteros.pdf" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/c-ballesteros/" },
-  { label: "GitHub", href: "https://github.com/Christian-B-P" },
-];
+I have professional experience in the telecommunications sector, contributing to FTTH design and the preparation of detailed technical plans for providers, as well as previous experience in IT support, assisting users with VPN configuration, corporate email issue management, and credential recovery.
+
+From a technical perspective, I have developed a functional demo of a Pokémon-style video game, working with map editors, event systems, and game logic, which has helped me strengthen concepts related to design, state structuring, and behavior within an interactive application.
+
+I am currently expanding my skills in Power BI, focusing on data modeling, DAX measure creation, and KPI visualization, as well as in Docker, learning about application containerization and the management of reproducible development environments.
+
+I consider myself a responsible, hard-working person with a strong commitment to continuous learning, good teamwork skills, and the ability to adapt to new technological challenges.
+`,
+    tags: ["Backend", "Python", "Power BI", "Docker", "Cybersecurity"],
+    links: [
+      { label: "View CV", href: "/CartaPresentacion/CV-Christian-Ballesteros.pdf" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/c-ballesteros/" },
+      { label: "GitHub", href: "https://github.com/Christian-B-P" },
+    ],
+  },
+};
+
+const name = "Christian Ballesteros Pérez";
+const defaultLang = "es";
+const t = content[defaultLang];
 ---
 
-<html lang="es">
+<html lang={t.htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{name} — Presentación</title>
-    <meta name="description" content={`${name} — ${role}.`} />
+    <title>{name} — {t.pageTitle}</title>
+    <meta name="description" content={`${name} — ${t.role}.`} />
 
     <style>
       :root { color-scheme: dark; }
@@ -58,7 +88,7 @@ const links = [
         transform: translateY(14px);
         opacity: 0;
         animation: rise .8s ease forwards;
-		text-align: center;
+        text-align: center;
       }
 
       .glow {
@@ -72,34 +102,81 @@ const links = [
         pointer-events: none;
       }
 
+      .topbar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 18px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .lang-switch {
+        display: inline-flex;
+        gap: 8px;
+        padding: 6px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.12);
+      }
+
+      .lang-btn {
+        border: 0;
+        background: transparent;
+        color: rgba(255,255,255,.78);
+        padding: 8px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background .2s ease, color .2s ease, transform .12s ease;
+      }
+
+      .lang-btn:hover {
+        transform: translateY(-1px);
+        color: rgba(255,255,255,.95);
+      }
+
+      .lang-btn.active {
+        background: rgba(255,255,255,.14);
+        color: rgba(255,255,255,.98);
+      }
+
       h1 {
         margin: 0 0 6px;
         font-size: clamp(34px, 4vw, 46px);
         letter-spacing: -0.02em;
+        position: relative;
+        z-index: 2;
       }
 
       .role {
         margin: 0 0 16px;
         color: rgba(255,255,255,.78);
         font-size: 16px;
+        position: relative;
+        z-index: 2;
       }
 
       .bio {
-  		margin: 0 0 18px;
-		line-height: 1.65;
-		color: rgba(255,255,255,.82);
-		max-width: 70ch;
-		white-space: pre-line;
-		margin-left: auto;
-		margin-right: auto;
-	}
+        margin: 0 0 18px;
+        line-height: 1.65;
+        color: rgba(255,255,255,.82);
+        max-width: 70ch;
+        white-space: pre-line;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 2;
+      }
 
       .tags {
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
         margin: 10px 0 18px;
-		justify-content: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
       }
 
       .tag {
@@ -116,7 +193,9 @@ const links = [
         gap: 12px;
         flex-wrap: wrap;
         margin-top: 8px;
-		justify-content: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
       }
 
       a.btn {
@@ -145,7 +224,7 @@ const links = [
 
       @media (prefers-reduced-motion: reduce) {
         .card { animation: none; opacity: 1; transform: none; }
-        a.btn { transition: none; }
+        a.btn, .lang-btn { transition: none; }
       }
     </style>
   </head>
@@ -155,20 +234,25 @@ const links = [
       <div class="card">
         <div class="glow"></div>
 
-        <h1>{name}</h1>
-        <p class="role">{role}</p>
-        <p class="bio">{bio}</p>
-
-        <div class="tags">
-          <span class="tag">Backend</span>
-          <span class="tag">Python</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Ciberseguridad</span>
+        <div class="topbar">
+          <div class="lang-switch">
+            <button id="btn-es" class="lang-btn active" type="button">ES</button>
+            <button id="btn-en" class="lang-btn" type="button">EN</button>
+          </div>
         </div>
 
-        <div class="row">
-          {links.map((l) => (
+        <h1 id="name">{name}</h1>
+        <p id="role" class="role">{t.role}</p>
+        <p id="bio" class="bio">{t.bio}</p>
+
+        <div id="tags" class="tags">
+          {t.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+
+        <div id="links" class="row">
+          {t.links.map((l) => (
             <a class="btn" href={l.href} target="_blank" rel="noreferrer">
               {l.label}
             </a>
@@ -176,5 +260,54 @@ const links = [
         </div>
       </div>
     </div>
+
+    <script define:vars={{ content, name }}>
+      const btnEs = document.getElementById("btn-es");
+      const btnEn = document.getElementById("btn-en");
+      const roleEl = document.getElementById("role");
+      const bioEl = document.getElementById("bio");
+      const tagsEl = document.getElementById("tags");
+      const linksEl = document.getElementById("links");
+
+      function renderLanguage(lang) {
+        const t = content[lang] || content.es;
+
+        document.documentElement.lang = t.htmlLang;
+        document.title = `${name} — ${t.pageTitle}`;
+
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+          metaDescription.setAttribute("content", `${name} — ${t.role}.`);
+        }
+
+        roleEl.textContent = t.role;
+        bioEl.textContent = t.bio;
+
+        tagsEl.innerHTML = t.tags
+          .map((tag) => `<span class="tag">${tag}</span>`)
+          .join("");
+
+        linksEl.innerHTML = t.links
+          .map(
+            (link) => `
+              <a class="btn" href="${link.href}" target="_blank" rel="noreferrer">
+                ${link.label}
+              </a>
+            `
+          )
+          .join("");
+
+        btnEs.classList.toggle("active", lang === "es");
+        btnEn.classList.toggle("active", lang === "en");
+
+        localStorage.setItem("language", lang);
+      }
+
+      const savedLang = localStorage.getItem("language") || "es";
+      renderLanguage(savedLang);
+
+      btnEs.addEventListener("click", () => renderLanguage("es"));
+      btnEn.addEventListener("click", () => renderLanguage("en"));
+    </script>
   </body>
 </html>
