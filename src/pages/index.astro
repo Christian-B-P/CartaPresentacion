@@ -9,9 +9,11 @@ Soy Christian Ballesteros Pérez, desarrollador en formación con base técnica 
 
 Cuento con experiencia profesional en el sector de telecomunicaciones, participando en el diseño FTTH y la elaboración de planos técnicos detallados para proveedores, así como experiencia previa en soporte informático, ofreciendo asistencia técnica a usuarios en la configuración de VPN, gestión de incidencias de correo corporativo y recuperación de credenciales.
 
-A nivel técnico, he desarrollado una demo funcional de un videojuego tipo Pokémon, trabajando con editores de mapas, sistemas de eventos y lógica de juego, lo que me ha permitido afianzar conceptos de diseño, estructuración de estados y comportamiento dentro de una aplicación interactiva.
+A nivel técnico, he desarrollado una demo funcional de un videojuego 2D, trabajando con editores de mapas, sistemas de eventos y lógica de juego, lo que me ha permitido afianzar conceptos de diseño, estructuración de estados y comportamiento dentro de una aplicación interactiva.
+Actualmente, me encuentro desarrollando una aplicación que integra tecnologías de reconocimiento de texto (OCR), enfocada en la extracción y procesamiento de información relevante para el usuario.
 
-Actualmente me encuentro ampliando mis competencias en Power BI, centrado en el modelado de datos, creación de medidas DAX y visualización de KPIs, así como en Docker, aprendiendo la contenedorización de aplicaciones y la gestión de entornos de desarrollo reproducibles.
+Actualmente, amplío mis competencias en Power BI, enfocado en modelado de datos, desarrollo de medidas DAX y visualización de KPIs.
+Además, he participado en la automatización de procesos en entornos SOAR, desarrollando soluciones en Python e integraciones con APIs para el tratamiento de alertas, filtrado de eventos y orquestación de acciones automatizadas sobre sistemas.
 
 Me considero una persona responsable, trabajadora y orientada al aprendizaje continuo, con buena capacidad de trabajo en equipo y adaptación a nuevos retos tecnológicos.
 `,
@@ -31,9 +33,11 @@ I am Christian Ballesteros Pérez, a developer in training with a technical back
 
 I have professional experience in the telecommunications sector, contributing to FTTH design and the preparation of detailed technical plans for providers, as well as previous experience in IT support, assisting users with VPN configuration, corporate email issue management, and credential recovery.
 
-From a technical perspective, I have developed a functional demo of a Pokémon-style video game, working with map editors, event systems, and game logic, which has helped me strengthen concepts related to design, state structuring, and behavior within an interactive application.
+From a technical perspective, I have developed a functional demo of a 2D video game, working with map editors, event systems, and game logic, which has helped me strengthen concepts related to design, state structuring, and behavior within an interactive application.
+I am currently developing an application that integrates optical character recognition (OCR) technologies, focused on extracting and processing relevant information for the user.
 
-I am currently expanding my skills in Power BI, focusing on data modeling, DAX measure creation, and KPI visualization, as well as in Docker, learning about application containerization and the management of reproducible development environments.
+I am currently expanding my skills in Power BI, focusing on data modeling, DAX measure development, and KPI visualization.
+In addition, I have participated in process automation within SOAR environments, developing Python-based solutions and API integrations for alert handling, event filtering, and the orchestration of automated actions across systems.
 
 I consider myself a responsible, hard-working person with a strong commitment to continuous learning, good teamwork skills, and the ability to adapt to new technological challenges.
 `,
@@ -200,22 +204,43 @@ const t = content[defaultLang];
 
       a.btn {
         text-decoration: none;
-        color: rgba(255,255,255,.92);
-        padding: 12px 14px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,.18);
-        background: rgba(255,255,255,.07);
-        transition: transform .12s ease, background .2s ease, border-color .2s ease;
+        color: rgba(255,255,255,.96);
+        padding: 13px 18px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.22);
+        background: linear-gradient(135deg, rgba(99,102,241,.34), rgba(34,197,94,.24));
+        box-shadow: 0 12px 30px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+        transition: transform .12s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
         display: inline-flex;
         align-items: center;
         gap: 10px;
         will-change: transform;
+        font-weight: 700;
+        letter-spacing: .01em;
+      }
+
+      a.btn::after {
+        content: "->";
+        font-size: 14px;
+        opacity: .82;
+        transition: transform .2s ease, opacity .2s ease;
       }
 
       a.btn:hover {
-        transform: translateY(-2px);
-        background: rgba(255,255,255,.12);
-        border-color: rgba(255,255,255,.28);
+        transform: translateY(-3px);
+        background: linear-gradient(135deg, rgba(99,102,241,.48), rgba(34,197,94,.34));
+        border-color: rgba(255,255,255,.32);
+        box-shadow: 0 18px 34px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.12);
+      }
+
+      a.btn:hover::after {
+        transform: translateX(3px);
+        opacity: 1;
+      }
+
+      a.btn:focus-visible {
+        outline: 2px solid rgba(255,255,255,.9);
+        outline-offset: 3px;
       }
 
       @keyframes rise {
